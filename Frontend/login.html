@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <title>Login</title>
+        <link rel="stylesheet" href="Assets/style.css"/>
+    </head>
+    <body>
+        <header>
+            <div class="brand">Spray Records</div>
+            <div class="right small">Demo: operator@test.com / pass123 • admin@test.com / pass123</div>        
+        </header>
+        <main style="max-width:520px">
+            <div class="card">
+                <h2>Login</h2>
+                <!--Error Message Placeholder-->
+                <div id="msg" class="notice error" style="display:none"></div>
+                <div class="row">
+                    <div style="flex:1">
+                        <input id="email" value="operator@test.com"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <div style="flex:1">
+                        <input id="password" type="password" value="pass123"/>
+                    </div>
+                </div>
+                <div style="margin-top:12px" class="row">
+                    <button id="btnLogin" style="flex:1">Sign In</button>
+                </div>
+                <div class="small" style="margin-top:10px">
+                    First Time? Click here to seed demo users:
+                    <button class="secondary" id="btnSeed">Seed Demo Users</button>
+                </div>
+            </div>
+        </main>
+        <script src="Assets/app.js"></script>
+        <!-- <script>
+    /**
+     * Seed creates demo users in the database:
+     * - operator@test.com / pass123
+     * - admin@test.com / pass123
+     */
+    async function seed() {
+      try {
+        await apiFetch("/auth/seed", { method: "POST", body: "{}" });
+        alert("Seeded demo users. Now login.");
+      } catch (e) { alert(e.message); }
+    }
+
+    /**
+     * Login requests a JWT token from the backend.
+     * On success, token + user role are stored in localStorage.
+     */
+    async function login() {
+      q("msg").style.display = "none";
+      q("btnLogin").disabled = true;
+
+      try {
+        const email = q("email").value.trim();
+        const password = q("password").value;
+        const data = await apiFetch("/auth/login", {
+          method: "POST",
+          body: JSON.stringify({ email, password })
+        });
+
+        // Save token and user info locally
+        setAuth(data.token, data.user);
+
+        // Redirect to role-specific dashboard
+        window.location.href = (data.user.role === "ADMIN")
+          ? "admin-dashboard.html"
+          : "operator-dashboard.html";
+      } catch (e) {
+        q("msg").textContent = e.message;
+        q("msg").style.display = "block";
+      } finally {
+        q("btnLogin").disabled = false;
+      }
+    }
+
+    q("btnSeed").addEventListener("click", seed);
+    q("btnLogin").addEventListener("click", login);
+  </script> -->
+    </body>
+</html>
