@@ -36,52 +36,52 @@
             </div>
         </main>
         <script src="Assets/app.js"></script>
-        <!-- <script>
+        <script>
     /**
      * Seed creates demo users in the database:
      * - operator@test.com / pass123
      * - admin@test.com / pass123
      */
-    async function seed() {
-      try {
-        await apiFetch("/auth/seed", { method: "POST", body: "{}" });
+    async function seed(){
+      try{
+        await apiFetch("/auth/seed", { method:"POST", body: "{}" });
         alert("Seeded demo users. Now login.");
-      } catch (e) { alert(e.message); }
+      }catch(e){ alert(e.message); }
     }
 
     /**
      * Login requests a JWT token from the backend.
      * On success, token + user role are stored in localStorage.
      */
-    async function login() {
-      q("msg").style.display = "none";
-      q("btnLogin").disabled = true;
+    async function login(){
+      q("msg").style.display="none";
+      q("btnLogin").disabled=true;
 
-      try {
+      try{
         const email = q("email").value.trim();
         const password = q("password").value;
         const data = await apiFetch("/auth/login", {
-          method: "POST",
+          method:"POST",
           body: JSON.stringify({ email, password })
         });
 
-        // Save token and user info locally
+        // This will save token and user locally
         setAuth(data.token, data.user);
 
         // Redirect to role-specific dashboard
         window.location.href = (data.user.role === "ADMIN")
           ? "admin-dashboard.html"
           : "operator-dashboard.html";
-      } catch (e) {
+      }catch(e){
         q("msg").textContent = e.message;
-        q("msg").style.display = "block";
-      } finally {
-        q("btnLogin").disabled = false;
+        q("msg").style.display="block";
+      }finally{
+        q("btnLogin").disabled=false;
       }
     }
 
     q("btnSeed").addEventListener("click", seed);
     q("btnLogin").addEventListener("click", login);
-  </script> -->
-    </body>
+  </script>
+</body>
 </html>
