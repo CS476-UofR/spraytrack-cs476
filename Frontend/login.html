@@ -1,18 +1,14 @@
-<!--
-  Simple English comments version
-  This page is part of the CS476 Spray Records project.
-  The comments in this file explain the structure of the page in easy words.
--->
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Login</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="Assets/styles.css" />
 </head>
+
 <body>
-  <!-- Public header -->
   <header>
     <div class="brand">Spray Records</div>
     <div class="right small">Demo: operator@test.com / pass123 • admin@test.com / pass123</div>
@@ -21,8 +17,6 @@
   <main style="max-width:520px">
     <div class="card">
       <h2>Login</h2>
-
-      <!-- Error message placeholder -->
       <div id="msg" class="notice error" style="display:none"></div>
 
       <div class="row">
@@ -50,48 +44,36 @@
     </div>
   </main>
 
-  <script src="assets/app.js"></script>
+  <script src="Assets/app.js"></script>
   <script>
-    /**
-     * Seed creates demo users in the database:
-     * - operator@test.com / pass123
-     * - admin@test.com / pass123
-     */
-    async function seed(){
-      try{
-        await apiFetch("/auth/seed", { method:"POST", body: "{}" });
+    async function seed() {
+      try {
+        await apiFetch("/auth/seed", { method: "POST", body: "{}" });
         alert("Seeded demo users. Now login.");
-      }catch(e){ alert(e.message); }
+      } catch (e) { alert(e.message); }
     }
 
-    /**
-     * Login requests a JWT token from the backend.
-     * On success, token + user role are stored in localStorage.
-     */
-    async function login(){
-      q("msg").style.display="none";
-      q("btnLogin").disabled=true;
+    async function login() {
+      q("msg").style.display = "none";
+      q("btnLogin").disabled = true;
 
-      try{
+      try {
         const email = q("email").value.trim();
         const password = q("password").value;
         const data = await apiFetch("/auth/login", {
-          method:"POST",
+          method: "POST",
           body: JSON.stringify({ email, password })
         });
-
-        // Save token and user info locally
         setAuth(data.token, data.user);
 
-        // Redirect to role-specific dashboard
         window.location.href = (data.user.role === "ADMIN")
           ? "admin-dashboard.html"
           : "operator-dashboard.html";
-      }catch(e){
+      } catch (e) {
         q("msg").textContent = e.message;
-        q("msg").style.display="block";
-      }finally{
-        q("btnLogin").disabled=false;
+        q("msg").style.display = "block";
+      } finally {
+        q("btnLogin").disabled = false;
       }
     }
 
@@ -99,4 +81,5 @@
     q("btnLogin").addEventListener("click", login);
   </script>
 </body>
+
 </html>
