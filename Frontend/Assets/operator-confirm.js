@@ -1,5 +1,4 @@
-/**
- * operator-confirm.js
+/*
  * Shows confirmation after submit.
  */
 requireAuth("OPERATOR");

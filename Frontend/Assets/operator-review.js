@@ -1,5 +1,4 @@
-/**
- * operator-review.js
+/*
  * Final review before submission.
  * Submission triggers the workflow status change to SUBMITTED.
  */
@@ -37,8 +36,6 @@ async function loadRec(){
   const water = r.water_volume_l ?? r.waterVolumeL;
   const lat = r.geometry_lat ?? r.geometryLat;
   const lng = r.geometry_lng ?? r.geometryLng;
-
-  // Usability: warn about missing required fields
   const missing = [];
   if(!productName) missing.push("Product Name");
   if(!pcp) missing.push("PCP Act #");
@@ -62,7 +59,6 @@ async function loadRec(){
 
 async function submit(){
   try{
-    // This endpoint enforces: location must exist, owner must match operator
     await apiFetch(`/records/${encodeURIComponent(id)}/submit`, { method:"POST", body:"{}" });
     location.href = `operator-confirm.html?id=${encodeURIComponent(id)}`;
   }catch(e){ alert(e.message); }

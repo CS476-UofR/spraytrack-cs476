@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-=======
-/**
- * admin-dashboard.js
- * Shows quick metrics for admins and recent activity.
- */
->>>>>>> ce371b3 (frontendcomplete)
 requireAuth("ADMIN");
 setHeader("Admin Dashboard");
 setNavActive();
@@ -28,8 +21,4 @@ setNavActive();
       <td>${fmtStatus(r.status)}</td>
     </tr>
   `).join("") || `<tr><td colspan="4" class="small">No records in the system.</td></tr>`;
-<<<<<<< HEAD
 })();
-=======
-})();
->>>>>>> ce371b3 (frontendcomplete)

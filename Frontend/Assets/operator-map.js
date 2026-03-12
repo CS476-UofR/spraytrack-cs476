@@ -1,5 +1,4 @@
-/**
- * operator-map.js
+/*
  * Stores coordinates (lat/lng) for the record.
  * In a real product you might use Leaflet/Google Maps.
  * This version stays within pure HTML/JS requirements.
@@ -10,28 +9,28 @@ setNavActive();
 
 const params = new URLSearchParams(location.search);
 const id = params.get("id");
-if(!id){
+if (!id) {
   alert("Missing record id");
-  location.href="operator-dashboard.html";
+  location.href = "operator-dashboard.html";
 }
 
-function showErr(msg){
+function showErr(msg) {
   q("msg").textContent = msg;
   q("msg").style.display = "block";
 }
-function clearErr(){ q("msg").style.display="none"; }
+function clearErr() { q("msg").style.display = "none"; }
 
-/**
+/*
  * Update the OpenStreetMap link to help the user verify coordinates.
  */
-function updateOSM(){
+function updateOSM() {
   const lat = q("lat").value.trim();
   const lng = q("lng").value.trim();
   const a = q("osm");
-  if(lat && lng){
+  if (lat && lng) {
     a.href = `https://www.openstreetmap.org/?mlat=${encodeURIComponent(lat)}&mlon=${encodeURIComponent(lng)}#map=16/${encodeURIComponent(lat)}/${encodeURIComponent(lng)}`;
     a.textContent = a.href;
-  }else{
+  } else {
     a.href = "#";
     a.textContent = "Enter coordinates first";
   }
@@ -39,13 +38,9 @@ function updateOSM(){
 q("lat").addEventListener("input", updateOSM);
 q("lng").addEventListener("input", updateOSM);
 
-/**
- * Use browser geolocation API (if allowed).
- * This supports efficiency (less typing).
- */
-function useGeo(){
+function useGeo() {
   clearErr();
-  if(!navigator.geolocation){
+  if (!navigator.geolocation) {
     showErr("Geolocation not supported.");
     return;
   }
@@ -56,22 +51,18 @@ function useGeo(){
   }, () => showErr("Could not get location (permission denied)."));
 }
 
-/**
- * Save coordinates back to backend.
- * Backend requires full record details for updates, so we re-fetch the record.
- */
-async function saveLocation(){
+async function saveLocation() {
   clearErr();
-  try{
+  try {
     const lat = Number(q("lat").value);
     const lng = Number(q("lng").value);
-    if(Number.isNaN(lat) || Number.isNaN(lng)) throw new Error("Latitude/Longitude must be numbers.");
+    if (Number.isNaN(lat) || Number.isNaN(lng)) throw new Error("Latitude/Longitude must be numbers.");
     const locationText = q("locationText").value.trim() || undefined;
 
     // Fetch operator records and find matching one
     const rows = await apiFetch("/records/my");
     const rec = rows.find(r => r.id === id);
-    if(!rec) throw new Error("Record not found.");
+    if (!rec) throw new Error("Record not found.");
 
     // Normalize DB row names if needed
     const payload = {
@@ -86,14 +77,13 @@ async function saveLocation(){
       geometry: { lat, lng }
     };
 
-    await apiFetch("/records", { method:"POST", body: JSON.stringify(payload) });
+    await apiFetch("/records", { method: "POST", body: JSON.stringify(payload) });
     location.href = `operator-review.html?id=${encodeURIComponent(id)}`;
-  }catch(e){ showErr(e.message); }
+  } catch (e) { showErr(e.message); }
 }
 
 q("btnGeo").addEventListener("click", useGeo);
 q("btnBack").addEventListener("click", () => history.back());
 q("btnSave").addEventListener("click", saveLocation);
 
-// Initial OSM state
 updateOSM();

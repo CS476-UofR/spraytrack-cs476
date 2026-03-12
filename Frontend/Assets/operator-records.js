@@ -1,5 +1,4 @@
-/**
- * operator-records.js
+/*
  * Filter and list records for the operator.
  */
 requireAuth("OPERATOR");
