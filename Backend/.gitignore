@@ -1,0 +1,28 @@
+#I saw other tutorials that used Django use all these files in the .gitignore. If we need to add more, we can later.
+
+#Python Junk (compiled files, virtual environments, etc.)
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+
+#Django Junk (database, logs)
+db.sqlite3
+*.log
+logs/app.log
+
+#Environment Variables
+.env
+
+#IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+#OS Files
+.DS_Store
+Thuimbs.db
