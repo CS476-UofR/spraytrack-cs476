@@ -126,33 +126,9 @@ button:disabled{opacity:.6;cursor:not-allowed;}
 .badge{
   display:inline-block;
   padding:4px 8px;
-  border:1px solid transparent;
+  border:1px solid var(--border);
   border-radius:999px;
   font-size:12px;
-  font-weight:600;
-  color:#111;
-  background:#f1f1f1;
-}
-
-/* Pending / Submitted */
-.badge-pending{
-  background:#fff3cd;
-  color:#856404;
-  border-color:#ffe69c;
-}
-
-/* Approved */
-.badge-approved{
-  background:#d1e7dd;
-  color:#0f5132;
-  border-color:#a3cfbb;
-}
-
-/* Flagged */
-.badge-flagged{
-  background:#f8d7da;
-  color:#842029;
-  border-color:#f1aeb5;
 }
 
 /* Notices for success/error messages */
