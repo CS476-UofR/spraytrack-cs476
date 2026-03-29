@@ -150,7 +150,18 @@ function logout(){
 }
 function q(id){ return document.getElementById(id); }
 
-/** Format a record status as a pill badge */
-function fmtStatus(status){
-  return `<span class="badge">${status}</span>`;
+/** Format a record status as a pill badge : woo: Updated to show colour code of status*/
+  const normalized = String(status || "").toUpperCase();
+
+  let cls = "badge";
+
+  if (normalized === "FLAGGED") {
+    cls += " badge-flagged";
+  } else if (normalized === "APPROVED") {
+    cls += " badge-approved";
+  } else if (normalized === "SUBMITTED" || normalized === "PENDING") {
+    cls += " badge-pending";
+  }
+
+  return `<span class="${cls}">${status}</span>`;
 }
