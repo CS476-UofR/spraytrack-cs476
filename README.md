@@ -27,7 +27,7 @@ HTML / CSS / JavaScript + MySQL + Django
 
 ## Live Deployement
 Frontend: (VERCEL)
-https://spraytrack-cs476-8ye27s9qq-cs476-uofrs-projects.vercel.app/
+https://spraytrack-cs476-iu65hb044-cs476-uofrs-projects.vercel.app/
 
 Backend: (RAILWAY)
 https://spraytrack-cs476-production.up.railway.app/
