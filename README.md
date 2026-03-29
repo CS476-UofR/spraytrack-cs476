@@ -89,15 +89,6 @@ Admin:
 - admin-view-record.html
 - admin-map.html
 
-## Project Structure
-Backend/
-Frontend/
-  ├── login.html
-  ├── operator-*.html
-  ├── admin-*.html
-  └── Assets/
-Database/
-
 ## Deployment Architecture
 Frontend: Vercel (Static Hosting, CDN)
 Backend: Railway (Django + Gunicorn)
