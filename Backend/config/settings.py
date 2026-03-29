@@ -168,8 +168,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Which frontend domains are allowed to make requests to the backend
 CORS_ALLOWED_ORIGINS = ALLOWED_ORIGINS
 
-# Google Maps Key 
-GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY', '')
 
 # Logging Config 
 # This is just logging config stuff that will write logs to a console and a file. This will works along with the observer pattern
