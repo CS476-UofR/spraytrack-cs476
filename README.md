@@ -28,6 +28,7 @@ HTML / CSS / JavaScript + MySQL + Django
 ## Live Deployement
 Frontend: (VERCEL)
 https://spraytrack-cs476-8ye27s9qq-cs476-uofrs-projects.vercel.app/
+
 Backend: (RAILWAY)
 https://spraytrack-cs476-production.up.railway.app/
 
@@ -108,12 +109,12 @@ Frontend → Backend API (Railway)
 Backend → Database (MySQL)
 
 ## Testing
-   Open frontend
-   Click Seed Demo Users
-   Login as:
+   1) Open frontend
+   2) Click Seed Demo Users
+   3) Login as:
          operator@test.com
          admin@test.com
-   Test: 
+   4) Test: 
          Record Creation
          Submission
          Approval Workflow
