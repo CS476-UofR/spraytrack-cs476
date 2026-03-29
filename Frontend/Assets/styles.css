@@ -126,6 +126,7 @@ button:disabled{opacity:.6;cursor:not-allowed;}
 .badge{
   display:inline-block;
   padding:4px 8px;
+  /*New updated colour codes. */
   border:1px solid transparent;
   border-radius:999px;
   font-size:12px;
@@ -154,7 +155,6 @@ button:disabled{opacity:.6;cursor:not-allowed;}
   color:#842029;
   border-color:#f1aeb5;
 }
-
 /* Notices for success/error messages */
 .notice{
   padding:10px;
