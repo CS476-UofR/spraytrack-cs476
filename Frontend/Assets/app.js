@@ -150,7 +150,8 @@ function logout(){
 }
 function q(id){ return document.getElementById(id); }
 
-/** Format a record status as a pill badge : woo: Updated to show colour code of status*/
+/** Format a record status as a pill badge : woo: Updated to show colour code of status*/\
+  function fmtStatus(status){
   const normalized = String(status || "").toUpperCase();
 
   let cls = "badge";
